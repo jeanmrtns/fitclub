@@ -1,25 +1,24 @@
-import React from "react";
-import { FaGithub } from "react-icons/fa";
+import { signIn, useSession, signOut } from 'next-auth/client';
+import { FaGoogle } from "react-icons/fa";
 import { FiX } from "react-icons/fi";
 import styles from "./styles.module.scss";
 
 export default function SignInButton() {
-  const [logged, setLogged] = React.useState(false);
 
-  function loggin() {
-    setLogged(!logged);
-  }
+  const [session] = useSession()
+  const user = session && session.user
 
-  return logged ? (
-    <button type="button" className={styles.SignInButton}>
-      <FaGithub color="#fdbc38" />
-      Jean Martins
-      <FiX className={styles.logout} onClick={loggin} title="Sair" />
+  return session ? (
+    <button type="button" className={styles.SignInButton} onClick={() => signOut()}>
+      {/* <FaGoogle color="#fdbc38" /> */}
+      <img src={String(user?.image)} alt={session.user && String(user?.name)} className={styles.userImage} />
+      {user?.name}
+      <FiX className={styles.logout} title="Sair" />
     </button>
   ) : (
-    <button type="button" className={styles.SignInButton} onClick={loggin}>
-      <FaGithub />
-      Entre com o GitHub
+    <button type="button" className={styles.SignInButton} onClick={() => signIn('google')}>
+      <FaGoogle />
+      Entre com o Google
     </button>
   );
 }
