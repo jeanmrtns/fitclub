@@ -16,7 +16,7 @@ export default function Home({ product }: HomeProps) {
   return (
     <>
       <Head>
-        <title>Landing-Page | Main</title>
+      <title>Início - FitClub</title>
       </Head>
       <main className={styles.homeContainer}>
         <section>
