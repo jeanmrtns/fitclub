@@ -1,9 +1,9 @@
 import SignInButton from "../SignInButton";
 import styles from "./styles.module.scss";
-
-import Link from 'next/link'
+import { ActiveLink } from '../ActiveLink';
 
 export default function Header() {
+
   return (
     <header className={styles.headerContainer}>
       <div className={styles.headerContent}>
@@ -11,12 +11,12 @@ export default function Header() {
           <span>Fit</span>Club
         </h4>
         <nav>
-          <Link href="/">
-            <a className={styles.active}>Início</a>
-          </Link>
-          <Link href="/posts">
+          <ActiveLink href="/" activeClassName={styles.active}>
+            <a>Início</a>
+          </ActiveLink>
+          <ActiveLink href="/posts" activeClassName={styles.active}>
             <a>Novidades</a>
-          </Link>
+          </ActiveLink>
         </nav>
 
         <SignInButton />

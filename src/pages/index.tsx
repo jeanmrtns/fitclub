@@ -4,6 +4,7 @@ import Image from "next/image";
 import SubscribeButton from "../components/SubscribeButton";
 import { stripe } from "../services/stripe";
 import styles from "./home.module.scss";
+import { useSession } from "next-auth/client";
 
 interface HomeProps {
   product: {
@@ -13,6 +14,7 @@ interface HomeProps {
 }
 
 export default function Home({ product }: HomeProps) {
+
   return (
     <>
       <Head>
