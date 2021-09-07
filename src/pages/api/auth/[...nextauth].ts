@@ -14,9 +14,12 @@ export default NextAuth({
     async signIn(user, account, profile) {
       const { email } = user;
 
-      await fauna.query(q.Create(q.Collection('users'), { data: { email } }));
+      await fauna.query(q.Create('users', { data: { email } }));
 
       return true;
     },
+  },
+  jwt: {
+    signingKey: process.env.JWT_HASH,
   },
 });
